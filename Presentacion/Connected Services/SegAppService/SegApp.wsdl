@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SegApp" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://desarrollo.ayto-caceres.es/SegApp/SegApp.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://desarrollo.ayto-caceres.es/SegApp/SegApp.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://desarrollo.ayto-caceres.es/SegApp/SegApp.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WebService.Modelos" />
+      <xsd:import schemaLocation="http://desarrollo.ayto-caceres.es/SegApp/SegApp.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ISegApp_Authenticate_InputMessage">
+    <wsdl:part name="parameters" element="tns:Authenticate" />
+  </wsdl:message>
+  <wsdl:message name="ISegApp_Authenticate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AuthenticateResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISegApp_AuthenticateWithData_InputMessage">
+    <wsdl:part name="parameters" element="tns:AuthenticateWithData" />
+  </wsdl:message>
+  <wsdl:message name="ISegApp_AuthenticateWithData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AuthenticateWithDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISegApp_AuthenticateWithDataJSON_InputMessage">
+    <wsdl:part name="parameters" element="tns:AuthenticateWithDataJSON" />
+  </wsdl:message>
+  <wsdl:message name="ISegApp_AuthenticateWithDataJSON_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AuthenticateWithDataJSONResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISegApp_GetGruposByUsername_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGruposByUsername" />
+  </wsdl:message>
+  <wsdl:message name="ISegApp_GetGruposByUsername_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGruposByUsernameResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISegApp_EsMiembroDe_InputMessage">
+    <wsdl:part name="parameters" element="tns:EsMiembroDe" />
+  </wsdl:message>
+  <wsdl:message name="ISegApp_EsMiembroDe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EsMiembroDeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISegApp_Authorizate_InputMessage">
+    <wsdl:part name="parameters" element="tns:Authorizate" />
+  </wsdl:message>
+  <wsdl:message name="ISegApp_Authorizate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AuthorizateResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISegApp_AuthorizateJSON_InputMessage">
+    <wsdl:part name="parameters" element="tns:AuthorizateJSON" />
+  </wsdl:message>
+  <wsdl:message name="ISegApp_AuthorizateJSON_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AuthorizateJSONResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ISegApp">
+    <wsdl:operation name="Authenticate">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISegApp/Authenticate" message="tns:ISegApp_Authenticate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISegApp/AuthenticateResponse" message="tns:ISegApp_Authenticate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateWithData">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISegApp/AuthenticateWithData" message="tns:ISegApp_AuthenticateWithData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISegApp/AuthenticateWithDataResponse" message="tns:ISegApp_AuthenticateWithData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateWithDataJSON">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISegApp/AuthenticateWithDataJSON" message="tns:ISegApp_AuthenticateWithDataJSON_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISegApp/AuthenticateWithDataJSONResponse" message="tns:ISegApp_AuthenticateWithDataJSON_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGruposByUsername">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISegApp/GetGruposByUsername" message="tns:ISegApp_GetGruposByUsername_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISegApp/GetGruposByUsernameResponse" message="tns:ISegApp_GetGruposByUsername_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EsMiembroDe">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISegApp/EsMiembroDe" message="tns:ISegApp_EsMiembroDe_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISegApp/EsMiembroDeResponse" message="tns:ISegApp_EsMiembroDe_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Authorizate">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISegApp/Authorizate" message="tns:ISegApp_Authorizate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISegApp/AuthorizateResponse" message="tns:ISegApp_Authorizate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthorizateJSON">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISegApp/AuthorizateJSON" message="tns:ISegApp_AuthorizateJSON_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISegApp/AuthorizateJSONResponse" message="tns:ISegApp_AuthorizateJSON_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ISegApp" type="tns:ISegApp">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Authenticate">
+      <soap:operation soapAction="http://tempuri.org/ISegApp/Authenticate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateWithData">
+      <soap:operation soapAction="http://tempuri.org/ISegApp/AuthenticateWithData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateWithDataJSON">
+      <soap:operation soapAction="http://tempuri.org/ISegApp/AuthenticateWithDataJSON" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGruposByUsername">
+      <soap:operation soapAction="http://tempuri.org/ISegApp/GetGruposByUsername" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EsMiembroDe">
+      <soap:operation soapAction="http://tempuri.org/ISegApp/EsMiembroDe" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Authorizate">
+      <soap:operation soapAction="http://tempuri.org/ISegApp/Authorizate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthorizateJSON">
+      <soap:operation soapAction="http://tempuri.org/ISegApp/AuthorizateJSON" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SegApp">
+    <wsdl:port name="BasicHttpBinding_ISegApp" binding="tns:BasicHttpBinding_ISegApp">
+      <soap:address location="http://desarrollo.ayto-caceres.es/SegApp/SegApp.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

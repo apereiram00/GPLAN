@@ -46,6 +46,9 @@ namespace Repository.Implementations
              Valores = ValoresRepository;
              Origen = OrigenRepository;
           }
+
+
+
           public ICamposRepository Campos { get; private set; }
           public IPlantillasRepository Plantillas { get; private set; }
           public ITiposRepository Tipos { get; private set; }

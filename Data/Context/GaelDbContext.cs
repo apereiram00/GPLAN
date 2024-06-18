@@ -1,5 +1,6 @@
 ﻿using System;
 using Data.Entities;
+using EntityFrameworkCore.Jet;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -52,7 +53,7 @@ namespace Data.Context
                     .HasColumnType("VARCHAR2(50)");
 
                 entity.Property(e => e.OrigenSrc)
-                    .HasColumnName("ORIGENSRC")
+                    .HasColumnName("ORIGEN_SRC")
                     .HasColumnType("VARCHAR2(1000)");
 
                 entity.Property(e => e.FechaAlta)
@@ -84,7 +85,12 @@ namespace Data.Context
                    .HasColumnName("UUID")
                    .HasColumnType("VARCHAR2(50)")
                    .HasDefaultValueSql("sys_guid() ");
-            });
+
+                entity.Property(e => e.DescripcionValor)
+                 .HasColumnName("DESCRIPCION_VALOR")
+                 .HasColumnType("VARCHAR2(100)");                             
+                     
+             });
 
             modelBuilder.Entity<Campos>(entity =>
             {
@@ -148,17 +154,22 @@ namespace Data.Context
                     .HasColumnType("VARCHAR2(50)")
                     .HasDefaultValueSql("sys_guid() ");
 
-                entity.HasOne(d => d.Plantilla)
-                    .WithMany(p => p.Campos)
-                    .HasForeignKey(d => d.PlantillaId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("SYS_C003617020");
+                entity.Property(e => e.Origen_Id)
+                   .HasColumnName("ORIGENID")
+                   .HasColumnType("NUMBER");
+
+                entity.HasOne(d => d.Origen)
+                    .WithMany(p => p.CamposOrigen)
+                    .HasForeignKey(d => d.Origen_Id)
+                    .HasConstraintName("FK_ORIGENID");
+
 
                 entity.HasOne(d => d.TipoCampo)
                     .WithMany(p => p.Campos)
                     .HasForeignKey(d => d.TipoCampoId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("SYS_C003617019");
+
             });
 
             modelBuilder.Entity<Plantillas>(entity =>
@@ -399,6 +410,8 @@ namespace Data.Context
             modelBuilder.Entity<Tipos>().HasQueryFilter(entity => entity.FechaBaja == null);
             modelBuilder.Entity<Plantillas>().HasQueryFilter(entity => entity.FechaBaja == null);
             modelBuilder.Entity<Campos>().HasQueryFilter(entity => entity.FechaBaja == null);
+            modelBuilder.Entity<Origen>().HasQueryFilter(entity => entity.FechaBaja == null);
+
         }
     }
 }

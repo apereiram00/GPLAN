@@ -32,13 +32,14 @@
             this.panelContenedor = new System.Windows.Forms.Panel();
             this.panelFormularios = new System.Windows.Forms.Panel();
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.btnNuevoOrigen = new System.Windows.Forms.Button();
             this.btnSolicitarPlantilla = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnNuevaPlantilla = new System.Windows.Forms.Button();
             this.btnPlantillas = new System.Windows.Forms.Button();
             this.panelInferiorUsuario = new System.Windows.Forms.Panel();
-            this.lblDepartamento = new System.Windows.Forms.Label();
+            this.lblOrigen = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnCerrarSesion = new System.Windows.Forms.Button();
             this.lblUsuario = new System.Windows.Forms.Label();
@@ -86,6 +87,7 @@
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.White;
+            this.panelMenu.Controls.Add(this.btnNuevoOrigen);
             this.panelMenu.Controls.Add(this.btnSolicitarPlantilla);
             this.panelMenu.Controls.Add(this.label2);
             this.panelMenu.Controls.Add(this.pictureBox1);
@@ -96,6 +98,24 @@
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(250, 628);
             this.panelMenu.TabIndex = 1;
+            // 
+            // btnNuevoOrigen
+            // 
+            this.btnNuevoOrigen.FlatAppearance.BorderSize = 0;
+            this.btnNuevoOrigen.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(218)))), ((int)(((byte)(218)))));
+            this.btnNuevoOrigen.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(218)))), ((int)(((byte)(218)))));
+            this.btnNuevoOrigen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNuevoOrigen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevoOrigen.ForeColor = System.Drawing.Color.Black;
+            this.btnNuevoOrigen.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevoOrigen.Image")));
+            this.btnNuevoOrigen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNuevoOrigen.Location = new System.Drawing.Point(11, 361);
+            this.btnNuevoOrigen.Name = "btnNuevoOrigen";
+            this.btnNuevoOrigen.Size = new System.Drawing.Size(221, 32);
+            this.btnNuevoOrigen.TabIndex = 5;
+            this.btnNuevoOrigen.Text = "Nuevo Origen";
+            this.btnNuevoOrigen.UseVisualStyleBackColor = true;
+            this.btnNuevoOrigen.Click += new System.EventHandler(this.btnNuevoOrigen_Click);
             // 
             // btnSolicitarPlantilla
             // 
@@ -176,7 +196,7 @@
             // panelInferiorUsuario
             // 
             this.panelInferiorUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(86)))), ((int)(((byte)(153)))));
-            this.panelInferiorUsuario.Controls.Add(this.lblDepartamento);
+            this.panelInferiorUsuario.Controls.Add(this.lblOrigen);
             this.panelInferiorUsuario.Controls.Add(this.label4);
             this.panelInferiorUsuario.Controls.Add(this.btnCerrarSesion);
             this.panelInferiorUsuario.Controls.Add(this.lblUsuario);
@@ -187,15 +207,15 @@
             this.panelInferiorUsuario.Size = new System.Drawing.Size(1205, 40);
             this.panelInferiorUsuario.TabIndex = 0;
             // 
-            // lblDepartamento
+            // lblOrigen
             // 
-            this.lblDepartamento.AutoSize = true;
-            this.lblDepartamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDepartamento.ForeColor = System.Drawing.Color.White;
-            this.lblDepartamento.Location = new System.Drawing.Point(602, 10);
-            this.lblDepartamento.Name = "lblDepartamento";
-            this.lblDepartamento.Size = new System.Drawing.Size(0, 20);
-            this.lblDepartamento.TabIndex = 9;
+            this.lblOrigen.AutoSize = true;
+            this.lblOrigen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOrigen.ForeColor = System.Drawing.Color.White;
+            this.lblOrigen.Location = new System.Drawing.Point(602, 10);
+            this.lblOrigen.Name = "lblOrigen";
+            this.lblOrigen.Size = new System.Drawing.Size(0, 20);
+            this.lblOrigen.TabIndex = 9;
             // 
             // label4
             // 
@@ -204,9 +224,9 @@
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(471, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(116, 20);
+            this.label4.Size = new System.Drawing.Size(60, 20);
             this.label4.TabIndex = 8;
-            this.label4.Text = "Departamento:";
+            this.label4.Text = "Origen:";
             // 
             // btnCerrarSesion
             // 
@@ -367,9 +387,10 @@
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnCerrarSesion;
-        private System.Windows.Forms.Label lblDepartamento;
+        private System.Windows.Forms.Label lblOrigen;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnSolicitarPlantilla;
+        private System.Windows.Forms.Button btnNuevoOrigen;
     }
 }
 

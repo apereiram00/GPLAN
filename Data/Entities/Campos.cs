@@ -5,6 +5,11 @@ namespace Data.Entities
 {
     public partial class Campos
     {
+        public Campos()
+        {
+          //CamposOrigen = new HashSet<Origen>();
+        }
+
         public decimal Camposid { get; set; }
         public string CampoPlantilla { get; set; }
         public string CampoExterno { get; set; }
@@ -17,8 +22,14 @@ namespace Data.Entities
         public DateTime? FechaUltimaModif { get; set; }
         public string UsuarioUltimaModif { get; set; }
         public string Uuid { get; set; }
+        public decimal Origen_Id { get; set; }
 
-        public virtual Plantillas Plantilla { get; set; }
+
+        public virtual Origen Origen { get; set; }
         public virtual Valores TipoCampo { get; set; }
+       //public virtual ICollection<Origen> CamposOrigen { get; set; }
+
+
+
     }
 }

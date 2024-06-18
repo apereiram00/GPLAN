@@ -81,7 +81,7 @@ namespace Repository.Implementations
         {
             try
             {
-               return await _context.Plantillas.Include(p => p.Origen).Include(p => p.Estado).Include(p => p.Campos).ToListAsync();
+               return await _context.Plantillas.Include(p => p.Origen).Include(p => p.Estado).ToListAsync();
             }
             catch (Exception ex)
             {
@@ -108,7 +108,7 @@ namespace Repository.Implementations
         {
             try
             {
-                var entidad = await _context.Plantillas.Include(p=>p.Campos).Where(v => v.Plantillasid == id).IgnoreQueryFilters().SingleOrDefaultAsync();
+                var entidad = await _context.Plantillas.Where(v => v.Plantillasid == id).IgnoreQueryFilters().SingleOrDefaultAsync();
 
                 return entidad; ;
             }
@@ -151,7 +151,7 @@ namespace Repository.Implementations
                 EntidadAActualizar.RutaPlantilla = entity.RutaPlantilla;
                 EntidadAActualizar.SeguridadId = entity.SeguridadId;
                 EntidadAActualizar.EstadoId = entity.EstadoId;
-                //EntidadAActualizar.DepartamentoId = entity.DepartamentoId;
+                EntidadAActualizar.OrigenId = entity.OrigenId;
 
                 EntidadAActualizar.UsuarioUltimaModif = user;
                 EntidadAActualizar.FechaUltimaModif = DateTime.Now;

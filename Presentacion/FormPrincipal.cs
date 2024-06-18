@@ -35,7 +35,7 @@ namespace Presentacion
                 #region "Lógica relacionada con perfiles de usuarios"
                 lblUsuario.Text = _UsuarioSeguridad.Nombre;
                 if(_UsuarioSeguridad.Perfiles.Length > 0)
-                    lblDepartamento.Text = _UsuarioSeguridad.Perfiles[0].NombrePerfil;
+                    lblOrigen.Text = _UsuarioSeguridad.Perfiles[0].NombrePerfil;
 
                 //Mapeo el usuario de la seguridad al de utilidades
                 _UsuarioUtils = UtilidadesSeguridad.GetUsuarioFromJSON(_UsuarioSeguridad.UsuarioJSON);
@@ -257,6 +257,11 @@ namespace Presentacion
             }
         }
 
+        private void f_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void btnPlantillas_Click(object sender, EventArgs e)
         {
             try
@@ -275,6 +280,19 @@ namespace Presentacion
             try
             {
                 AbrirFormEnPanel<FormNuevaPlantillas>();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Constantes.MENSAJE_ERROR_GENERICO, Constantes.TITULO_ERROR_GENERICO, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message + " " + ex.StackTrace, Constantes.TITULO_ERROR_GENERICO, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnNuevoOrigen_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AbrirFormEnPanel<FormNuevoOrigen>();
             }
             catch (Exception ex)
             {

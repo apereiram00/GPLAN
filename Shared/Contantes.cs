@@ -57,7 +57,7 @@
         public static readonly string TIPO_CAMPO_MYTAO = "MyTao";
 
         //TIPOS
-        public static readonly int TIPO_DEPARTAMENTOS = 1;
+        public static readonly int TIPO_ORIGEN = 1;
         public static readonly int TIPO_ESTADOS = 3;
         public static readonly int TIPO_SEGURIDAD = 2;
         public static readonly int TIPO_TIPOS_CAMPO = 4;
@@ -71,10 +71,10 @@
         public static readonly int VALOR_ESTADO_PENDIENTE_CONFIGURAR = 6;
         public static readonly int VALOR_ESTADO_PREPARADA = 7;
 
-        //VALORES DE LOS TIPOS DE DEPARTAMENTOS
-        public static readonly int VALOR_DEPARTAMENTO_URBANISMO = 1;
-        public static readonly int VALOR_DEPARTAMENTO_SANCIONES = 14;
-        public static readonly int VALOR_DEPARTAMENTO_LICENCIAS = 17;
+        //VALORES DE LOS TIPOS DE ORIGEN
+        public static readonly int VALOR_ORIGEN_URBANISMO = 1;
+        public static readonly int VALOR_ORIGEN_SANCIONES = 14;
+        public static readonly int VALOR_ORIGEN_LICENCIAS = 17;
 
         //VALORES DE LOS TIPOS DE CAMPO EN LAS PLANTILLAS
         public static readonly int VALOR_TIPO_CAMPO_BBDD = 9;

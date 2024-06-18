@@ -51,7 +51,7 @@ namespace Presentacion
                 ConfigurarOpenFileDialog();
 
                 //Configuro columnas del DataGridView
-                ConfigurarDataGridView();
+                // ConfigurarDataGridView();
             }
             catch (Exception ex)
             {
@@ -142,7 +142,7 @@ namespace Presentacion
         {
             var _context = new GaelDbContext();
 
-            return new UnitOfWork(_context, new CamposRepository(_context), new PlantillasRepository(_context), new TiposRepository(_context), new ValoresRepository(_context));
+            return new UnitOfWork(_context, new CamposRepository(_context), new PlantillasRepository(_context), new TiposRepository(_context), new ValoresRepository(_context), new OrigenRepository(_context));
         }
 
         private void DisposeUnitOfWork(IUnitOfWork unitOfwork)
@@ -160,8 +160,8 @@ namespace Presentacion
 
         private void CargaComboOrigen()
         {
-            var listaOrig = _unitOfWork.Valores.GetAll().Result;
-            listaOrig = listaOrig.Where(v => v.TiposId == Constantes.TIPO_ORIGEN).ToList();
+            var listaOrig = _unitOfWork.Origen.GetAll().Result;
+           //listaOrig = listaOrig.Where(v => v.Origenid == Constantes.TIPO_ORIGEN).ToList();
 
             cmbOrigen.DataSource = listaOrig;
             cmbOrigen.ValueMember = "Origenid";
@@ -185,7 +185,7 @@ namespace Presentacion
             openFileDialog.Filter = @"Word File (.docx)|*.docx";
             openFileDialog.FileName = "";
         }
-        private void ConfigurarDataGridView()
+       /* private void ConfigurarDataGridView()
         {
             var c1 = new DataGridViewTextBoxColumn();
             c1.Name = "CampoPlantilla";
@@ -209,9 +209,9 @@ namespace Presentacion
             c3.DisplayMember = "NombreValor";
 
             dgvCamposPlantilla.Columns.AddRange(c1, c2, c3);
-        }
+        }*/
 
-        private async void btnCargarCampos_Click(object sender, EventArgs e)
+        /*private async void btnCargarCampos_Click(object sender, EventArgs e)
         {
             try
             {
@@ -242,7 +242,7 @@ namespace Presentacion
                 MessageBox.Show(Constantes.MENSAJE_ERROR_GENERICO, Constantes.TITULO_ERROR_GENERICO, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 MessageBox.Show(ex.Message + " " + ex.StackTrace, Constantes.TITULO_ERROR_GENERICO, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+        }*/
 
         private void txtIdPlantilla_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -253,7 +253,7 @@ namespace Presentacion
             }
         }
 
-        private void btnBorrarCampos_Click(object sender, EventArgs e)
+       private void btnBorrarCampos_Click(object sender, EventArgs e)
         {
             try
             {

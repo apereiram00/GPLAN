@@ -49,7 +49,7 @@ namespace Presentacion
 
                 //Cargo los diferentes combos
                 CargaComboEstado();
-                CargaComboDepartamento();
+                CargaComboOrigen();
 
                 //Configuro OpenFileDialog
                 ConfigurarOpenFileDialog();
@@ -200,7 +200,7 @@ namespace Presentacion
         {
             var _context = new GaelDbContext();
 
-            return new UnitOfWork(_context, new CamposRepository(_context), new PlantillasRepository(_context), new TiposRepository(_context), new ValoresRepository(_context), new OrigenRepository(_context);
+            return new UnitOfWork(_context, new CamposRepository(_context), new PlantillasRepository(_context), new TiposRepository(_context), new ValoresRepository(_context), new OrigenRepository(_context));
         }
 
         private void DisposeUnitOfWork(IUnitOfWork unitOfwork)
@@ -216,12 +216,12 @@ namespace Presentacion
             }
         }
 
-        private void CargaComboDepartamento()
+        private void CargaComboOrigen()
         {
-            var listaDeptos = _unitOfWork.Valores.GetAll().Result;
-            listaDeptos = listaDeptos.Where(v => v.TiposId == Constantes.TIPO_DEPARTAMENTOS).ToList();
+            var listaOrig = _unitOfWork.Origen.GetAll().Result;
+            //listaOrig= listaOrig.Where(v => v.Campos_Id == Constantes.TIPO_ORIGEN).ToList();
 
-            cmbOrigen.DataSource = listaDeptos;
+            cmbOrigen.DataSource = listaOrig;
             cmbOrigen.ValueMember = "Origenid";
             cmbOrigen.DisplayMember = "Nombre";
         }
@@ -320,6 +320,11 @@ namespace Presentacion
             {
                 throw;
             }
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

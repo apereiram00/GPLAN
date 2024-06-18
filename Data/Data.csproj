@@ -35,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="EntityFrameworkCore.Jet" Version="2.0.0" />
     <Reference Include="Microsoft.EntityFrameworkCore, Version=2.1.11.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.EntityFrameworkCore.2.1.11\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
     </Reference>
@@ -131,6 +132,10 @@
     <Compile Include="Entities\Plantillas.cs" />
     <Compile Include="Entities\Tipos.cs" />
     <Compile Include="Entities\Valores.cs" />
+    <Compile Include="PlanGeneral\Context\PlanGeneralDbContext.cs" />
+    <Compile Include="PlanGeneral\Entities\Normas_articulos.cs" />
+    <Compile Include="PlanGeneral\Entities\Normas_capitulos.cs" />
+    <Compile Include="PlanGeneral\Entities\Normas_titulos.cs" />
     <Compile Include="Policia\Context\PoliciaContext.cs" />
     <Compile Include="Policia\Entities\Juractuaciones.cs" />
     <Compile Include="Policia\Entities\Jurdocumentos.cs" />

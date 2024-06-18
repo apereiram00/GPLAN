@@ -29,6 +29,7 @@ namespace Presentacion
         {
             InitializeComponent();
             _unitOfWork = GetUnitOfWork();
+            cmbOrigen.SelectedIndexChanged += new EventHandler(cmbOrigen_SelectedIndexChanged);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -36,6 +37,33 @@ namespace Presentacion
             DisposeUnitOfWork(_unitOfWork);
             this.Close();
         }
+
+        private async void cmbOrigen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var selectedOrigen = cmbOrigen.SelectedItem as Origen;
+
+                if (selectedOrigen != null && selectedOrigen.Origenid > 0)
+                {
+                    // Realiza la consulta para obtener la plantilla asociada al origen seleccionado
+                    IEnumerable<Plantillas> listaPlantillasTemp = await _unitOfWork.Plantillas.GetAllActive();
+                    listaPlantillasTemp = listaPlantillasTemp.Where(p => p.OrigenId == selectedOrigen.Origenid);
+
+                    // Convertimos a lista
+                    listaPlantillas = listaPlantillasTemp.ToList();
+
+                    // Cargamos la plantilla en el DataGridView
+                    CargaDGVPlantillas(listaPlantillas);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Constantes.MENSAJE_ERROR_GENERICO, Constantes.TITULO_ERROR_GENERICO, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message + " " + ex.StackTrace, Constantes.TITULO_ERROR_GENERICO, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -127,7 +155,7 @@ namespace Presentacion
 
                     //Recupero la sección de la plantilla
                     var idOrigenPlantilla = Convert.ToDecimal(dgvPlantillas.SelectedRows[0].Cells["ORIGENID"].Value);
-                    var origenPlantilla = await _unitOfWork.Valores.GetById(idOrigenPlantilla);
+                    var origenPlantilla = await _unitOfWork.Origen.GetById(idOrigenPlantilla);
                     if (origenPlantilla!= null)
                     {
                         //Comprobamos si el usuario tiene permisos para la sección de la plantilla.
@@ -176,9 +204,9 @@ namespace Presentacion
                         _unitOfWork.Plantillas.DeleteLogical(idPlantilla, string.Empty, _UsuarioUtils.Username);
 
                         //Elimino los campos de la plantilla
-                        var listaCamposPlantilla = _unitOfWork.Campos.GetAll().Result;
-                        listaCamposPlantilla = listaCamposPlantilla.Where(c => c.PlantillaId == idPlantilla).ToList();
-                        listaCamposPlantilla.ToList().ForEach(c => { _unitOfWork.Campos.DeleteLogical(c.Camposid, string.Empty, _UsuarioUtils.Username); });
+                        //var listaCamposPlantilla = _unitOfWork.Campos.GetAll().Result;
+                        //listaCamposPlantilla = listaCamposPlantilla.Where(c => c.PlantillaId == idPlantilla).ToList();
+                        //listaCamposPlantilla.ToList().ForEach(c => { _unitOfWork.Campos.DeleteLogical(c.Camposid, string.Empty, _UsuarioUtils.Username); });
 
                         _unitOfWork.CommitWork();
 
@@ -203,7 +231,7 @@ namespace Presentacion
         {
             var _context = new GaelDbContext();
 
-            return new UnitOfWork(_context, new CamposRepository(_context), new PlantillasRepository(_context), new TiposRepository(_context), new ValoresRepository(_context));
+            return new UnitOfWork(_context, new CamposRepository(_context), new PlantillasRepository(_context), new TiposRepository(_context), new ValoresRepository(_context), new OrigenRepository(_context));
         }
 
         private void DisposeUnitOfWork(IUnitOfWork unitOfwork)
@@ -281,8 +309,8 @@ namespace Presentacion
         {
             try
             {
-                //Muestro el nombre del Departamento
-                if (e.ColumnIndex == 13) //Columna del Departamento
+                //Muestro el nombre del Origen
+                if (e.ColumnIndex == 13) //Columna del Origen
                 {
                     var plantillaItem = (Plantillas)(this.dgvPlantillas.Rows[e.RowIndex].DataBoundItem);
                     if (plantillaItem.Origen != null)
@@ -331,13 +359,14 @@ namespace Presentacion
 
         private async void CargaComboOrigen()
         {
-            IEnumerable<Valores> iEnumerableOrig = await _unitOfWork.Valores.GetAll();
-            var listaOrig = iEnumerableOrig.Where(v => v.TiposId == Constantes.TIPO_ORIGEN).ToList();
+            IEnumerable<Origen> iEnumerableOrig = await _unitOfWork.Origen.GetAll();
+            //var listaOrig = iEnumerableOrig.Where(v => v.Origenid == Constantes.TIPO_ORIGEN).ToList();
+            var listaOrig = iEnumerableOrig.ToList();
 
-            var nuevoEstadoVacio = new Valores() { Valoresid = 0, NombreValor = "Todos" };
+            var nuevoEstadoVacio = new Origen() { Origenid = 0, Nombre = "Todos" };
             listaOrig.Add(nuevoEstadoVacio);
 
-            cmbOrigen.DataSource = listaDeptos.OrderBy(e => e.Valoresid).ToList();
+            cmbOrigen.DataSource = listaOrig.OrderBy(e => e.Origenid).ToList();
             cmbOrigen.ValueMember = "Origenid";
             cmbOrigen.DisplayMember = "Nombre";
         }

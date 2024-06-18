@@ -8,9 +8,9 @@ namespace Data.Entities
         public Valores()
         {
             Campos = new HashSet<Campos>();
-            // PlantillasDepartamento = new HashSet<Plantillas>();
             PlantillasEstado = new HashSet<Plantillas>();
             PlantillasSeguridad = new HashSet<Plantillas>();
+
         }
 
         public decimal Valoresid { get; set; }
@@ -28,7 +28,6 @@ namespace Data.Entities
 
         public virtual Tipos Tipos { get; set; }
         public virtual ICollection<Campos> Campos { get; set; }
-        // public virtual ICollection<Plantillas> PlantillasDepartamento { get; set; }
         public virtual ICollection<Plantillas> PlantillasEstado { get; set; }
         public virtual ICollection<Plantillas> PlantillasSeguridad { get; set; }
     }

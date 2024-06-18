@@ -74,7 +74,7 @@ namespace Presentacion
         {
             var _context = new GaelDbContext();
 
-            return new UnitOfWork(_context, new CamposRepository(_context), new PlantillasRepository(_context), new TiposRepository(_context), new ValoresRepository(_context));
+            return new UnitOfWork(_context, new CamposRepository(_context), new PlantillasRepository(_context), new TiposRepository(_context), new ValoresRepository(_context), new OrigenRepository(_context));
         }
 
         private void DisposeUnitOfWork(IUnitOfWork unitOfwork)

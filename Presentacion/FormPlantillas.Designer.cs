@@ -40,7 +40,7 @@
             this.btnEditar = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.btnImprimir = new System.Windows.Forms.Button();
-            this.cmbDepartamento = new System.Windows.Forms.ComboBox();
+            this.cmbOrigen = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.cmbEstado = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -176,13 +176,13 @@
             this.btnImprimir.UseVisualStyleBackColor = true;
             this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
-            // cmbDepartamento
-            // 
-            this.cmbDepartamento.FormattingEnabled = true;
-            this.cmbDepartamento.Location = new System.Drawing.Point(92, 76);
-            this.cmbDepartamento.Name = "cmbDepartamento";
-            this.cmbDepartamento.Size = new System.Drawing.Size(308, 21);
-            this.cmbDepartamento.TabIndex = 24;
+            // cmbOrigen
+            //
+            this.cmbOrigen.FormattingEnabled = true;
+            this.cmbOrigen.Location = new System.Drawing.Point(92, 76);
+            this.cmbOrigen.Name = "cmbOrigen";
+            this.cmbOrigen.Size = new System.Drawing.Size(308, 21);
+            this.cmbOrigen.TabIndex = 24;
             // 
             // label7
             // 
@@ -191,7 +191,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(74, 13);
             this.label7.TabIndex = 23;
-            this.label7.Text = "Departamento";
+            this.label7.Text ="Origen";
             // 
             // cmbEstado
             // 
@@ -218,7 +218,7 @@
             this.ClientSize = new System.Drawing.Size(941, 571);
             this.Controls.Add(this.cmbEstado);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.cmbDepartamento);
+            this.Controls.Add(this.cmbOrigen);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.label4);
@@ -252,7 +252,7 @@
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnImprimir;
-        private System.Windows.Forms.ComboBox cmbDepartamento;
+        private System.Windows.Forms.ComboBox cmbOrigen;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cmbEstado;
         private System.Windows.Forms.Label label5;

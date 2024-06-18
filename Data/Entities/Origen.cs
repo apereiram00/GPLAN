@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,8 +13,9 @@ namespace Data.Entities
         public Origen()
         {
             PlantillasOrigenes = new HashSet<Plantillas>();
-            //OrigenCampos = new HashSet<Origen>();
+            //CamposOrigen = new HashSet<Origen>();
         }
+
         public decimal Origenid { get; set; }
         public string Nombre { get; set; }
         public string OrigenSrc { get; set; }

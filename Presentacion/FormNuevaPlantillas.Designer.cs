@@ -36,7 +36,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnCrearPlantilla = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.dgvCamposPlantilla = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.txtPlantilla = new System.Windows.Forms.TextBox();
@@ -46,7 +45,6 @@
             this.cmbOrigen = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCamposPlantilla)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -99,34 +97,6 @@
             this.label4.Size = new System.Drawing.Size(113, 16);
             this.label4.TabIndex = 12;
             this.label4.Text = "Nueva Plantilla";
-            // 
-            // dgvCamposPlantilla
-            // 
-            this.dgvCamposPlantilla.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvCamposPlantilla.BackgroundColor = System.Drawing.Color.White;
-            this.dgvCamposPlantilla.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(218)))), ((int)(((byte)(218)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCamposPlantilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvCamposPlantilla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCamposPlantilla.Location = new System.Drawing.Point(12, 201);
-            this.dgvCamposPlantilla.MultiSelect = false;
-            this.dgvCamposPlantilla.Name = "dgvCamposPlantilla";
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            this.dgvCamposPlantilla.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvCamposPlantilla.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCamposPlantilla.Size = new System.Drawing.Size(917, 358);
-            this.dgvCamposPlantilla.TabIndex = 0;
             // 
             // label3
             // 
@@ -214,14 +184,12 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnCrearPlantilla);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.dgvCamposPlantilla);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormNuevaPlantillas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Nueva Plantilla";
             this.Load += new System.EventHandler(this.FormAplicaciones_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCamposPlantilla)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -233,7 +201,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnCrearPlantilla;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DataGridView dgvCamposPlantilla;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.TextBox txtPlantilla;

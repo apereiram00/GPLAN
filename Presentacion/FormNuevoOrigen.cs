@@ -45,11 +45,7 @@ namespace Presentacion
                 #endregion
 
                 //Cargo los diferentes combos
-                CargaComboEstado();
                 CargaComboOrigen();
-
-                //Configuro OpenFileDialog
-                ConfigurarOpenFileDialog();
 
                 //Configuro columnas del DataGridView
                 ConfigurarDataGridView();
@@ -101,49 +97,27 @@ namespace Presentacion
             cmbOrigen.DisplayMember = "Nombre";*/
         }
 
-        private void CargaComboEstado()
-        {
-            var listaEstados = _unitOfWork.Valores.GetAll().Result;
-            listaEstados = listaEstados.Where(v => v.TiposId == Constantes.TIPO_ESTADOS).ToList();
-
-           /* cmbEstado.DataSource = listaEstados;
-            cmbEstado.ValueMember = "Valoresid";
-            cmbEstado.DisplayMember = "NombreValor";*/
-        }
-
-        private void ConfigurarOpenFileDialog()
-        {
-            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            openFileDialog.RestoreDirectory = true;
-            openFileDialog.Filter = @"Word File (.docx)|*.docx";
-            openFileDialog.FileName = "";
-        }
         private void ConfigurarDataGridView()
         {
-            var c1 = new DataGridViewTextBoxColumn();
-            c1.Name = "CampoPlantilla";
-            c1.HeaderText = "Campo en Plantilla";
-            c1.Width = 150;
-
-            var c2 = new DataGridViewTextBoxColumn();
-            c2.Name = "CampoExterno";
-            c2.HeaderText = "Campo Externo";
-            c2.Width = 150;
+            var c1 = new DataGridViewTextBoxColumn { Name = "CampoPlantilla", HeaderText = "Campo en Plantilla", Width = 150 };
+            var c2 = new DataGridViewTextBoxColumn { Name = "CampoExterno", HeaderText = "Campo Externo", Width = 150 };
 
             var listaTiposCampo = _unitOfWork.Valores.GetAll().Result;
             listaTiposCampo = listaTiposCampo.Where(v => v.TiposId == Constantes.TIPO_TIPOS_CAMPO).ToList();
 
-            var c3 = new DataGridViewComboBoxColumn();
-            c3.Name = "TipoCampo";
-            c3.HeaderText = "Tipo de Campo";
-            c3.Width = 150;
-            c3.DataSource = listaTiposCampo;
-            c3.ValueMember = "Valoresid";
-            c3.DisplayMember = "NombreValor";
+            var c3 = new DataGridViewComboBoxColumn
+            {
+                Name = "TipoCampo",
+                HeaderText = "Tipo de Campo",
+                Width = 150,
+                DataSource = listaTiposCampo,
+                ValueMember = "Valoresid",
+                DisplayMember = "NombreValor"
+            };
 
             dgvCamposOrigen.Columns.AddRange(c1, c2, c3);
-        } 
-        
+        }
+
         private void txtIdPlantilla_KeyPress(object sender, KeyPressEventArgs e)
         {
             //Solo se permiten números
@@ -183,21 +157,17 @@ namespace Presentacion
                 }
 
                 //Si pasamos las comprobaciones damos el alta de la plantilla
-                var nuevoOrigen = new Origen();
+                var nuevoOrigen = new Origen
+                {
+                    Nombre = txtNombreOrigen.Text,
+                    OrigenSrc = txtOrigenSrc.Text,
+                    Uuid = Guid.NewGuid().ToString()
+                };
 
-                nuevoOrigen.Nombre = txtNombreOrigen.Text;
-                nuevoOrigen.OrigenSrc = txtOrigenSrc.Text;
-                nuevoOrigen.Uuid = Guid.NewGuid().ToString();
-                
-
-                //string dest = ConfigurationManager.AppSettings["directorioOrigen"].ToString();
-                //nuevoOrigen.OrigenSrc = $"{dest}\\{DateTime.Now:yyyyMMdd-HHmmss}-plantilla.docx";
                 string dest = $"Data Source=(DESCRIPTION =(ADDRESS=(PROTOCOL=TCP)(HOST=oraclescan)(PORT=1521))(CONNECT_DATA =(SERVER = DEDICATED)(SERVICE_NAME = AYTOCC)(FAILOVER_MODE =(TYPE = SELECT)(METHOD = BASIC)(RETRIES = 180)(DELAY = 5))));User Id={nuevoOrigen.Nombre};Password=;";
                 
                 nuevoOrigen.OrigenSrc = dest;
-                //nuevoOrigen.CamposOrigen = new List<Campos>();
-
-                /*foreach (DataGridViewRow fila in dgvCamposPlantilla.Rows)
+                foreach (DataGridViewRow fila in dgvCamposOrigen.Rows)
                 {
                     if (fila.Cells[0].Value != null && fila.Cells[1].Value != null && fila.Cells[2].Value != null)
                     {
@@ -206,20 +176,27 @@ namespace Presentacion
                         nuevoCamposPlantilla.CampoExterno = fila.Cells[1].Value.ToString();
                         nuevoCamposPlantilla.TipoCampoId = Convert.ToDecimal(fila.Cells[2].Value);
 
-                        nuevoOrigen.Campos.Add(nuevoCamposPlantilla);
+                        nuevoOrigen.CamposOrigen.Add(nuevoCamposPlantilla);
                     }
-                }*/
+                }
 
                 _unitOfWork.Origen.Create(nuevoOrigen, _UsuarioUtils.Username);
                 _unitOfWork.CommitWork();
 
                 MessageBox.Show(Constantes.MENSAJE_EXITO_GENERICO, Constantes.TITULO_EXITO_GENERICO, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ResetFormulario();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(Constantes.MENSAJE_ERROR_GENERICO, Constantes.TITULO_ERROR_GENERICO, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 MessageBox.Show(ex.Message + " " + ex.StackTrace, Constantes.TITULO_ERROR_GENERICO, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private void ResetFormulario()
+        {
+            txtNombreOrigen.Text = string.Empty;
+            txtOrigenSrc.Text = string.Empty;
+            dgvCamposOrigen.Rows.Clear();
         }
     }
 }

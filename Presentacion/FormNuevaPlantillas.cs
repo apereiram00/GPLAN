@@ -77,18 +77,6 @@ namespace Presentacion
                     return;
                 }
 
-                if (dgvCamposPlantilla.Rows.Count == 0)
-                {
-                    MessageBox.Show(Constantes.MENSAJE_ERROR_NO_CAMPOS_PLANTILLA, Constantes.TITULO_AVISO_GENERICO, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (dgvCamposPlantilla.Rows[0].Cells[0].Value == null || dgvCamposPlantilla.Rows[0].Cells[1].Value == null || dgvCamposPlantilla.Rows[0].Cells[2].Value == null)
-                {
-                    MessageBox.Show(Constantes.MENSAJE_ERROR_NO_CAMPOS_PLANTILLA, Constantes.TITULO_AVISO_GENERICO, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
                 //Si pasamos las comprobaciones damos el alta de la plantilla
                 var nuevaPlantilla = new Plantillas();
 
@@ -103,19 +91,6 @@ namespace Presentacion
                 File.Copy(openFileDialog.FileName, nuevaPlantilla.RutaPlantilla);
 
                 nuevaPlantilla.Campos = new List<Campos>();
-
-                foreach (DataGridViewRow fila in dgvCamposPlantilla.Rows)
-                {
-                    if (fila.Cells[0].Value != null && fila.Cells[1].Value != null && fila.Cells[2].Value != null)
-                    {
-                        var nuevoCamposPlantilla = new Campos();
-                        nuevoCamposPlantilla.CampoPlantilla = fila.Cells[0].Value.ToString();
-                        nuevoCamposPlantilla.CampoExterno = fila.Cells[1].Value.ToString();
-                        nuevoCamposPlantilla.TipoCampoId = Convert.ToDecimal(fila.Cells[2].Value);
-
-                        nuevaPlantilla.Campos.Add(nuevoCamposPlantilla);
-                    }
-                }
 
                 _unitOfWork.Plantillas.Create(nuevaPlantilla, _UsuarioUtils.Username);
                 _unitOfWork.CommitWork();
@@ -250,18 +225,6 @@ namespace Presentacion
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
-            }
-        }
-
-       private void btnBorrarCampos_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                dgvCamposPlantilla.Rows.Clear();
-            }
-            catch (Exception)
-            {
-                throw;
             }
         }
     }
